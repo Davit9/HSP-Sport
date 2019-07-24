@@ -1,0 +1,350 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:of="http://omnifaces.org/functions"
+                xmlns:sec="http://www.springframework.org/security"
+                xmlns:pe="http://primefaces.org/ui/extensions"
+                template="/WEB-INF/template.xhtml">
+  
+  
+  <o:importConstants type="am.chronograph.service.testing.forColumnType.Demo" />
+<o:importConstants type="am.chronograph.service.testing.forColumnType.ColumnType" />
+  
+<ui:define name="subheader">
+	<h:outputLink value="#{request.contextPath}/refdata" styleClass="BoldGray">
+		<h:outputText value="#{bundle['refDatas']}"/>
+	</h:outputLink>        
+</ui:define>
+
+ <ui:define name="content">
+ 
+ 	
+ 
+ <h:form id="groupForm">
+
+	<h:panelGroup id="groupCreatePanel" layout="block" styleClass="Container100 ui-fluid"> 
+		<div class="ContainerIndent">
+			<div class="Card ShadowEffect">					
+			        <p:tabView>		   
+			        <!-- Регистрационные данные -->      		 		         		 		         		 		         
+				        <p:tab title="Регистрационные данные">
+				      	   <div style="margin-left: 40%">	
+				            <h:panelGrid columns="2" cellpadding="10">
+				               <p:outputLabel value="Код Таблнцы" for="code" />
+				        			<p:autoComplete id="code" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}" />
+				                
+				                
+				               <p:outputLabel value="Редактируемый*" required="true" requiredMessage="This field is required."/>
+				       				 <p:selectOneRadio id="console" value="#{radioView.console}" unselectable="true">
+						            	 <f:selectItem itemLabel="Да" itemValue="Да"/>
+						           		 <f:selectItem itemLabel="Нет" itemValue="Нет" />
+				       			 	 </p:selectOneRadio>
+				       			 	
+				       			<p:outputLabel value="Формат импорта" for="import" />
+				        			<p:autoComplete id="import" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}" />
+				        			
+				        		<p:outputLabel value="Ссылка" for="Ссылка" />
+				        			<p:autoComplete id="Ссылка" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}" />
+				        			
+				
+				        		<p:outputLabel value="Начало*" for="startDate"/>
+				        			<p:calendar id="startDate" value="#{calendarView.date2}" />
+				            		
+				            		
+				            	<p:outputLabel value="Завершение" for="endDate" required="true" requiredMessage="This field is required."/>
+				        			<p:calendar id="endDate" value="#{calendarView.date2}" />	
+				        			
+				        		<h:outputText value="Статус" for="статус"/>
+				        			<p:selectOneButton>
+							            <f:selectItem id = "активный"
+							            			  itemLabel="Активный" 
+							            			  style = "background-color:green;"/>
+					    	  			<f:selectItem itemLabel="Пассивный" style = "height:30px;"/>
+							        </p:selectOneButton>
+		    				
+		    		
+				            </h:panelGrid>	
+				           </div> 	            
+				        </p:tab> 
+				        
+				        <!-- Структура -->
+				        <p:tab title="Структура">
+							<p:panelGrid style="margin-top:20px">
+							    <f:facet name="header" >
+							        <p:row style="height:10px">
+							            <p:column colspan="1" style="width:200px">Название</p:column>
+							            <p:column colspan="2" style="width:125px">Вид</p:column>
+							            <p:column colspan="3" style="width:16%">Параметры</p:column>
+							            <p:column colspan="4">Обязательное поле</p:column>
+							            <p:column colspan="5">Поисковый фильтр</p:column>
+							            <p:column colspan="6">Результат поиска</p:column>
+							            <p:column colspan="7">Сортировка</p:column>
+							            <p:column colspan="8">Последовательность столбцов</p:column>
+							            <p:column colspan="9">мя</p:column>
+							            <p:column colspan="10">Статус</p:column>						      
+							        </p:row>
+							 
+							    </f:facet>
+							    <!-- code -->
+							    <p:row>
+							        <p:column colspan="1" style="font-weight: bold;">code</p:column>
+							        							        
+							        <p:column colspan="2">
+							        	
+							            	<p:selectOneMenu id="code_type" value="">
+							           
+							            		<f:selectItems value="#{demo.getStatuses()}"/>
+							            	
+							        		</p:selectOneMenu> 							        		
+							        	
+							        </p:column>
+							        
+							        <p:column colspan="3" style="font-weight: bold;">
+							        		<p:outputLabel value="Min" for="codeMin" />
+												<p:autoComplete id="codeMin" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}" style="width:70px; margin:5px"/>
+											<p:outputLabel value="Max" for="codeMax" />
+												<p:autoComplete id="codeMax" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}" style="width:70px; margin-left:5px"/>
+											
+									</p:column>
+							        <p:column colspan="4" style="font-weight: bold;">
+												<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto" >
+											        <f:selectItem itemLabel="" itemValue="" selected="true"/>
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="5" style="font-weight: bold;">
+							        			<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto">
+											        <f:selectItem itemLabel="" itemValue="Xbox One" />
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="6" style="font-weight: bold;">
+							        			<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto">
+											        <f:selectItem itemLabel="" itemValue="Xbox One" />
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="7" style="font-weight: bold;">
+							        			<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto">
+											        <f:selectItem itemLabel="" itemValue="Xbox One" />
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="8" style="font-weight: bold;">
+							        		<p:outputLabel value="" />
+												<p:autoComplete value="1" completeMethod="#{autoCompleteView.completeText}" style="width:200px; margin:5px"/>
+											
+							        </p:column>
+							        <p:column colspan="9" style="font-weight: bold;">
+							        			<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto">
+											        <f:selectItem itemLabel="" itemValue="Xbox One" />
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="10" style="font-weight: bold;">
+											<p:selectOneMenu >
+							            		<f:selectItem itemLabel="Активный" itemValue="0" />
+							            		<f:selectItem itemLabel="Пассивный" itemValue="1" />
+							        		</p:selectOneMenu>
+									</p:column>
+							    </p:row>
+							 
+							    <!-- name -->
+							    <p:row>
+							        <p:column colspan="1" style="font-weight: bold;">name</p:column>
+							        <p:column colspan="2">
+							            	
+							            	<p:selectOneMenu id="name_type" value="">
+							            		<f:selectItems value="#{demo.getStatuses()}"/>
+							        		</p:selectOneMenu>
+							        </p:column>
+							        <p:column colspan="3" style="font-weight: bold;">
+							        		<p:outputLabel value="Min" for="nameMin" />
+												<p:autoComplete id="nameMin" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}" style="width:70px; margin:5px"/>
+											<p:outputLabel value="Max" for="nameMax" />
+												<p:autoComplete id="nameMax" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}" style="width:70px; margin-left:5px"/>
+											
+									</p:column>
+							        <p:column colspan="4" style="font-weight: bold;">
+												<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto" >
+											        <f:selectItem itemLabel="" itemValue="Xbox One" selected="true"/>
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="5" style="font-weight: bold;">
+							        			<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto">
+											        <f:selectItem itemLabel="" itemValue="Xbox One" />
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="6" style="font-weight: bold;">
+							        			<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto">
+											        <f:selectItem itemLabel="" itemValue="Xbox One" />
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="7" style="font-weight: bold;">
+							        			<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto">
+											        <f:selectItem itemLabel="" itemValue="Xbox One" />
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="8" style="font-weight: bold;">
+							        		<p:outputLabel value="" />
+												<p:autoComplete value="2" completeMethod="#{autoCompleteView.completeText}" style="width:200px; margin:5px"/>
+											
+							        </p:column>
+							        <p:column colspan="9" style="font-weight: bold;">
+							        			<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto">
+											        <f:selectItem itemLabel="" itemValue="Xbox One" />
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="10" style="font-weight: bold;">
+											<p:selectOneMenu >
+							            		<f:selectItem itemLabel="Активный" itemValue="0" />
+							            		<f:selectItem itemLabel="Пассивный" itemValue="1" />
+							        		</p:selectOneMenu>
+									</p:column>
+							    </p:row>
+							    
+							    <!-- start_date -->
+							    <p:row>
+							        <p:column colspan="1" style="font-weight: bold;">start_date</p:column>
+							        <p:column colspan="2">
+							            	
+							            	<p:selectOneMenu id="start_date_type" value="">
+							            		<f:selectItems value="#{demo.getStatuses()}"/>
+							        		</p:selectOneMenu>
+							        </p:column>
+							        <p:column colspan="3" style="font-weight: bold;">
+							        		<p:outputLabel value="Начало" for="start_date_from" />
+												<p:calendar id="start_date_from" pattern="dd-MM-yyyy" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}" style="width:70px; margin:5px"/>
+											<p:outputLabel value="Завершение" for="start_date_to" />
+												<p:calendar id="start_date_to" pattern="dd-MM-yyyy" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}" style="width:70px; margin-left:5px"/>
+											
+									</p:column>
+							        <p:column colspan="4" style="font-weight: bold;">
+												<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto" >
+											        <f:selectItem itemLabel="" itemValue="Xbox One" selected="true"/>
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="5" style="font-weight: bold;">
+							        			<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto">
+											        <f:selectItem itemLabel="" itemValue="Xbox One" />
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="6" style="font-weight: bold;">
+							        			<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto">
+											        <f:selectItem itemLabel="" itemValue="Xbox One" />
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="7" style="font-weight: bold;">
+							        			<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto">
+											        <f:selectItem itemLabel="" itemValue="Xbox One" />
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="8" style="font-weight: bold;">
+							        		<p:outputLabel value="" />
+												<p:autoComplete value="3" completeMethod="#{autoCompleteView.completeText}" style="width:200px; margin:5px"/>
+											
+							        </p:column>
+							        <p:column colspan="9" style="font-weight: bold;">
+							        			<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto">
+											        <f:selectItem itemLabel="" itemValue="Xbox One" />
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="10" style="font-weight: bold;">
+											<p:selectOneMenu >
+							            		<f:selectItem itemLabel="Активный" itemValue="0" />
+							            		<f:selectItem itemLabel="Пассивный" itemValue="1" />
+							        		</p:selectOneMenu>
+									</p:column>
+							    </p:row>
+							    
+							    <!-- end_date -->
+							    <p:row>
+							        <p:column colspan="1" style="font-weight: bold;">end_date</p:column>
+							        <p:column colspan="2">
+							            	
+							            	<p:selectOneMenu id="end_date_type" value="">
+							            		<f:selectItems value="#{demo.getStatuses()}"/>
+							        		</p:selectOneMenu>
+							        </p:column>
+							        <p:column colspan="3" style="font-weight: bold;">
+							        		<p:outputLabel value="Начало" for="end_date_from" />
+												<p:calendar id="end_date_from" pattern="dd-MM-yyyy" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}" style="width:70px; margin:5px"/>
+											<p:outputLabel value="Завершение" for="end_date_to" />
+												<p:calendar id="end_date_to" pattern="dd-MM-yyyy" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}" style="width:70px; margin-left:5px"/>
+											
+									</p:column>
+							        <p:column colspan="4" style="font-weight: bold;">
+												<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto" >
+											        <f:selectItem itemLabel="" itemValue="Xbox One" selected="true"/>
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="5" style="font-weight: bold;">
+							        			<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto">
+											        <f:selectItem itemLabel="" itemValue="Xbox One" />
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="6" style="font-weight: bold;">
+							        			<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto">
+											        <f:selectItem itemLabel="" itemValue="Xbox One" />
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="7" style="font-weight: bold;">
+							        			<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto">
+											        <f:selectItem itemLabel="" itemValue="Xbox One" />
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="8" style="font-weight: bold;">
+							        		<p:outputLabel value="" />
+												<p:autoComplete value="4" completeMethod="#{autoCompleteView.completeText}" style="width:200px; margin:5px"/>
+											
+							        </p:column>
+							        <p:column colspan="9" style="font-weight: bold;">
+							        			<p:selectManyCheckbox value="#{checkboxView.selectedConsoles}" style="margin:auto">
+											        <f:selectItem itemLabel="" itemValue="Xbox One" />
+											    </p:selectManyCheckbox>
+									</p:column>
+							        <p:column colspan="10" style="font-weight: bold;">
+											<p:selectOneMenu >
+							            		<f:selectItem itemLabel="Активный" itemValue="0" />
+							            		<f:selectItem itemLabel="Пассивный" itemValue="1" />
+							        		</p:selectOneMenu>
+									</p:column>
+									
+									
+							    </p:row>		
+
+							</p:panelGrid>
+							
+							<p:panelGrid>
+							 <p:commandButton id="createRow"          					    
+			                    			  value=""                 				 
+				                    		  style="width:40px; height:40px; background-color: green; margin-top: 10px;"
+				                    		  icon= "fa fa-plus"/>
+							</p:panelGrid>
+	
+				        </p:tab>
+				        <p:tab title="Английский">
+				      	   <div style="margin-left: 40%">
+					            <h:panelGrid columns="2" cellpadding="10">
+					               <p:outputLabel value="Название*" for="en" required="true"/>
+					        			<p:autoComplete id="en" value="Countries" />
+								</h:panelGrid>
+						   </div>
+				        </p:tab>
+
+			    	</p:tabView>	 						
+						
+						 <h:panelGroup id="buttonsPanel" layout="block">  
+						   <p:commandButton id="сохранить"           					    
+			                    			value="Сохранить"                 				 
+			                    			style="width:auto"/>
+			                    			 
+			               <p:commandButton id="отменить"           					    
+			                    			value="Отменить"                 				 
+			                    			style="width:auto"/>
+		
+						   </h:panelGroup>
+			</div>
+		</div>
+	</h:panelGroup>
+</h:form>
+</ui:define>
+</ui:composition>

@@ -1,0 +1,74 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:of="http://omnifaces.org/functions"
+                xmlns:sec="http://www.springframework.org/security"
+                xmlns:pe="http://primefaces.org/ui/extensions"
+                template="/WEB-INF/template.xhtml">
+  
+  
+  <o:importConstants type="am.chronograph.service.testing.forColumnType.Demo" />
+<o:importConstants type="am.chronograph.service.testing.forColumnType.ColumnType" />
+  
+<ui:define name="subheader">
+	<h:outputLink value="#{request.contextPath}/searchRefTable" styleClass="BoldGray">
+		<h:outputText value="Search ref table"/>
+	</h:outputLink>        
+</ui:define>
+
+ <ui:define name="content">
+ 	
+						
+			        <p:tabView>		       		 		         		 		         		 		         
+				        <p:tab title="">
+				      	   <div style="margin-left: 40%">	
+				            <h:panelGrid columns="2" cellpadding="10">
+				               <p:outputLabel value="ID" for="id" />
+				        			<p:spinner id="id" value="#{groupController.groupBean.maxStudent}" maxlength="3" tabindex="16"/>
+				                				                
+				               <p:outputLabel value="Название" required="true" requiredMessage="This field is required."/>
+				       				 <p:autoComplete id="название" value="#{aaa.name}" completeMethod="#{autoCompleteView.completeText}" />
+				       			 	
+				       			<p:outputLabel value="Код таблицы" for="code" />
+				        			<p:autoComplete id="code" value="#{autoCompleteView.txt1}"  />
+				        			
+				        		<p:outputLabel value="Начало:с" for="start_date_from" requiredMessage="This field is required."/>
+				        			<p:calendar id="start_date_from" value="#{calendarView.date2}" />				   
+				            						            		
+				            	<p:outputLabel value="Начало:до" for="start_date_to" required="true" requiredMessage="This field is required."/>
+				        			<p:calendar id="start_date_to" value="#{calendarView.date2}" />	
+				        			
+				        		<p:outputLabel value="Завершение:с" for="end_date_from" required="true" requiredMessage="This field is required."/>
+				        			<p:calendar id="end_date_from" value="#{calendarView.date2}" />	
+				        			
+				        		<p:outputLabel value="Завершение:до" for="end_date_to" required="true" requiredMessage="This field is required."/>
+				        			<p:calendar id="end_date_to" value="#{calendarView.date2}" />		
+				        			
+				        		<p:outputLabel value="Статус" for="status"/>
+				        			 <p:selectOneMenu id="status">	
+				        			    <f:selectItem itemLabel="Все" itemValue="0" />	 
+				        			    <f:selectItem itemLabel="Активный" itemValue="1" />	   
+				        			    <f:selectItem itemLabel="Пассивный" itemValue="2" />	     			
+									 </p:selectOneMenu>
+
+								<div>	
+				           			 <h:panelGrid columns="3" cellpadding="10">
+          								 <p:commandButton value="Поиск" style="background-color:green;"/> 
+          								 <p:commandButton value="Сброс" style="background-color:red;"/> 
+          								 <p:commandButton value="Поиск" style="margin-left: 120%;"/>                  
+       								 </h:panelGrid>
+       							</div>
+
+				            </h:panelGrid>	
+				           </div> 	            
+				        </p:tab> 
+				        
+
+			    	</p:tabView>	 						
+						
+
+</ui:define>
+</ui:composition>

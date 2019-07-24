@@ -1,0 +1,91 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:of="http://omnifaces.org/functions"
+                xmlns:sec="http://www.springframework.org/security"
+                xmlns:pe="http://primefaces.org/ui/extensions"
+                template="/WEB-INF/template.xhtml">
+  
+  
+  <o:importConstants type="am.chronograph.service.testing.forColumnType.Demo" />
+<o:importConstants type="am.chronograph.service.testing.forColumnType.ColumnType" />
+  
+<ui:define name="subheader">
+	<h:outputLink value="#{request.contextPath}/row" styleClass="BoldGray">
+		<h:outputText value="Row"/>
+	</h:outputLink>        
+</ui:define>
+
+ <ui:define name="content">
+ 
+ 	
+ 
+ <h:form id="groupForm">
+
+	<h:panelGroup id="groupCreatePanel" layout="block" styleClass="Container100 ui-fluid"> 
+		<div class="ContainerIndent">
+			<div class="Card ShadowEffect">					
+			        <p:tabView>		   
+			        <!-- Регистрационные данные -->      		 		         		 		         		 		         
+				        <p:tab title="Регистрационные данные">
+				      	   <div style="margin-left: 40%">	
+				            <h:panelGrid columns="2" cellpadding="10">
+				               <p:outputLabel value="Код таблицы" for="codeTable" />
+				        			<p:autoComplete id="codeTable" value="currencies" completeMethod="#{autoCompleteView.completeText}" />
+				                
+				                
+				           	   <p:outputLabel value="Код*" for="code" />
+				        			<p:autoComplete id="code" value="051" completeMethod="#{autoCompleteView.completeText}" />
+				       			 	
+				        	   <p:outputLabel value="Начало*" for="startDate"/>
+				        			<p:calendar id="startDate" value="#{calendarView.date2}" />
+				            		
+				            		
+				            	<p:outputLabel value="Завершение" for="endDate" required="true" requiredMessage="This field is required."/>
+				        			<p:calendar id="endDate" value="#{calendarView.date2}" />	
+				        			
+				        		<h:outputText value="Статус" for="статус"/>
+				        			<p:selectOneButton>
+							            <f:selectItem id = "активный" itemLabel="Активный"  />
+					    	  			<f:selectItem itemLabel="Пассивный" style = "height:30px;"/>
+							        </p:selectOneButton>
+		    				
+		    		
+				            </h:panelGrid>	
+				           </div> 	            
+				        </p:tab> 
+				        
+				       
+				        <p:tab title="Английский">
+				      	   <div style="margin-left: 40%">
+					            <h:panelGrid columns="2" cellpadding="10">
+					               <p:outputLabel value="Название*" for="en" required="true"/>
+					        			<p:autoComplete id="en" value="AMD" />
+					        			
+					        	   <p:outputLabel value="Полное название*" for="fullNmae" required="true"/>
+					        			<p:autoComplete id="fullNmae" value="Armenian Dram" />	
+								</h:panelGrid>
+						   </div>
+				        </p:tab>
+
+			    	</p:tabView>	 						
+						
+						 <h:panelGroup id="buttonsPanel" layout="block" >  
+						   <p:commandButton id="сохранить"           					    
+			                    			value="Сохранить"                 				 
+			                    			style="width:auto"/>
+			                    			 
+			               <p:commandButton id="отменить"           					    
+			                    			value="Отменить"                 				 
+			                    			style="width:auto"/>
+		
+						   </h:panelGroup>
+			</div>
+		</div>
+	</h:panelGroup>
+</h:form>
+</ui:define>
+</ui:composition>
