@@ -1,10 +1,10 @@
-am/chronograph/dao/country/CountryDao.class
+am/chronograph/dao/student/StudentDao.class
 am/chronograph/web/security/SpringSecurityELLibrary.class
 am/chronograph/web/model/SearchAwareBeanLazyModel.class
 am/chronograph/dao/tournament/TournamentDao.class
+am/chronograph/dao/course/CourseDaoImpl.class
 am/chronograph/domain/user/Role.class
 am/chronograph/service/ExchangeRateServiceImpl.class
-am/chronograph/domain/country/Country.class
 am/chronograph/ex/EmailSentFailedException.class
 am/chronograph/web/converter/PermissionConverter.class
 am/chronograph/service/tournament/TournamentServiceImpl.class
@@ -13,8 +13,8 @@ am/chronograph/web/integration/SpringIntegrationExtention$SpringBean.class
 am/chronograph/web/security/IsAuthenticatedTag.class
 am/chronograph/domain/user/Permission.class
 am/chronograph/dao/tournament/TournamentDaoImpl.class
+am/chronograph/service/student/StudentServiceImpl.class
 am/chronograph/dao/HqlQueryBuilder.class
-am/chronograph/service/country/CountryServiceImpl.class
 am/chronograph/web/exporter/ChronoExporterFactory$1.class
 am/chronograph/service/contract/ImportDataServiceImpl.class
 am/chronograph/web/bean/contract/ImportedExcelBean.class
@@ -24,7 +24,6 @@ am/chronograph/service/user/PermissionService.class
 am/chronograph/domain/user/User.class
 am/chronograph/config/ApplicationInitializer.class
 am/chronograph/service/user/RoleService.class
-am/chronograph/web/controller/country/CountryController.class
 am/chronograph/dao/user/RoleDao.class
 am/chronograph/domain/contract/ExcelContractIncome.class
 am/chronograph/dao/GenericDao.class
@@ -45,8 +44,10 @@ am/chronograph/config/ApplicationContext.class
 am/chronograph/web/util/DateUtil.class
 am/chronograph/service/EmailService.class
 am/chronograph/dao/email/EmailTemplateDao.class
+am/chronograph/web/bean/course/CourseBean.class
 am/chronograph/service/SearchBeanAware.class
 am/chronograph/service/tournament/TournamentService.class
+am/chronograph/dao/student/StudentDaoImpl.class
 am/chronograph/service/contract/ContractServiceImpl.class
 am/chronograph/service/contract/ContractService.class
 am/chronograph/web/controller/admin/EmailAdminController.class
@@ -57,6 +58,7 @@ am/chronograph/service/user/UserServiceImpl.class
 am/chronograph/config/SecurityConfig.class
 am/chronograph/web/bean/contract/ContractBean.class
 am/chronograph/web/bean/upload/UploadedFileBean.class
+am/chronograph/domain/course/Course.class
 am/chronograph/service/ExchangeRateService.class
 am/chronograph/service/user/UserService.class
 am/chronograph/domain/email/EmailTemplate.class
@@ -83,6 +85,8 @@ am/chronograph/config/LiquibaseConfig.class
 am/chronograph/dao/contract/ContractDaoImpl.class
 am/chronograph/web/converter/LocalDateTimeConverter.class
 am/chronograph/web/controller/admin/UserController.class
+am/chronograph/web/controller/course/CourseController.class
+am/chronograph/domain/student/Student.class
 am/chronograph/search/SearchSupport.class
 am/chronograph/util/SpringLocator.class
 am/chronograph/search/SearchOrderCriterion.class
@@ -96,6 +100,8 @@ am/chronograph/web/controller/user/UserProfileController.class
 am/chronograph/web/util/Constants$StepLevel.class
 am/chronograph/search/SearchResultImpl.class
 am/chronograph/dao/contract/ImportedExcelDao.class
+am/chronograph/service/course/CourseServiceImpl.class
+am/chronograph/service/student/StudentService.class
 am/chronograph/domain/email/EmailTemplate$Type.class
 am/chronograph/search/SearchCriteriaImpl.class
 am/chronograph/web/util/Constants$StepStatus.class
@@ -103,6 +109,7 @@ am/chronograph/domain/AbstractDataFile.class
 am/chronograph/dao/user/UserDao.class
 am/chronograph/security/UserDetails.class
 am/chronograph/web/controller/MenuController.class
+am/chronograph/web/bean/student/StudentBean.class
 am/chronograph/web/bean/contract/ExcelContractBean.class
 am/chronograph/test/Point.class
 am/chronograph/web/bean/tournament/TournamentBean.class
@@ -113,6 +120,7 @@ am/chronograph/web/controller/admin/UserActivationController.class
 am/chronograph/web/util/Constants$ContractStatus.class
 am/chronograph/service/user/RoleServiceImpl.class
 am/chronograph/web/controller/tournament/TournamentController.class
+am/chronograph/service/course/CourseService.class
 am/chronograph/web/security/IfAnyGrantedTag.class
 am/chronograph/web/integration/SpringIntegrationExtention.class
 am/chronograph/web/model/SearchAwareLazyModel.class
@@ -121,15 +129,15 @@ am/chronograph/web/security/IfAllGrantedTag.class
 am/chronograph/dao/user/RoleSearchCriteria.class
 am/chronograph/dao/contract/ExcelContractIncomeDao.class
 am/chronograph/security/UserDeatailsServiceImpl.class
-am/chronograph/service/country/CountryService.class
+am/chronograph/dao/course/CourseDao.class
 am/chronograph/config/EmailConfig.class
 am/chronograph/aop/AuditAwareAspect.class
 am/chronograph/web/controller/contract/ImportDataController.class
 am/chronograph/domain/contract/ImportedExcel.class
 am/chronograph/web/integration/Spring.class
 am/chronograph/web/bean/BaseBean.class
-am/chronograph/dao/country/CountryDaoImpl.class
 am/chronograph/web/bean/contract/ContractSearchResultBean.class
+am/chronograph/web/controller/student/StudentController.class
 am/chronograph/dao/user/PermissionDao.class
 am/chronograph/dao/user/PermissionSearchCriteria.class
 am/chronograph/dao/contract/ExcelContractIncomeDaoImpl.class
@@ -139,7 +147,6 @@ am/chronograph/service/contract/ImportDataService.class
 am/chronograph/web/util/Constants$QuestionStatus.class
 am/chronograph/dao/user/RoleDaoImpl.class
 am/chronograph/web/controller/contract/ContractController.class
-am/chronograph/web/bean/country/CountryBean.class
 am/chronograph/dao/contract/ContractDao.class
 am/chronograph/web/ex/ChronoExceptionHandlerFactory.class
 am/chronograph/web/ex/ChronoExceptionHandler.class

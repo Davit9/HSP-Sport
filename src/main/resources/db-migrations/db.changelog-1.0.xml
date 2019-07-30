@@ -513,5 +513,30 @@
 
 		</createTable>
 	</changeSet>
+	
+	<changeSet id="2019-07-30/001" author="davit">
+		<createTable tableName="course">
+			<column name="id" type="BIGINT" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+
+			<column name="name" type="VARCHAR(30)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="created_at" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="modified_at" type="DATETIME" />
+
+			<column name="created_by" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="modified_by" type="BIGINT" />
+
+		</createTable>
+	</changeSet>
 
 </databaseChangeLog>
