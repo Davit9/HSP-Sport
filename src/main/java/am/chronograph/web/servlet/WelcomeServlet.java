@@ -38,7 +38,7 @@ public class WelcomeServlet extends HttpServlet {
 		if (SecurityContextHolder.getContext().getAuthentication() != null
 				&& SecurityContextHolder.getContext().getAuthentication().isAuthenticated()
 				&& !authenticationTrustResolver.isAnonymous(SecurityContextHolder.getContext().getAuthentication())) {
-			response.sendRedirect(response.encodeRedirectURL("dashboard"));
+			response.sendRedirect(response.encodeRedirectURL("student"));
 		} else {
 			response.sendRedirect(response.encodeRedirectURL("login"));
 		}
