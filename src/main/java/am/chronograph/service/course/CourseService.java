@@ -2,6 +2,8 @@ package am.chronograph.service.course;
 
 import java.util.List;
 
+import javax.faces.model.SelectItem;
+
 import am.chronograph.web.bean.course.CourseBean;
 
 /**
@@ -39,4 +41,10 @@ public interface CourseService {
 	 * @return
 	 */
 	List<CourseBean> getAll();
+	
+	/**
+	 * Get the select items list of all courses... 
+	 * @return
+	 */
+	List<SelectItem> getAllItems();
 }

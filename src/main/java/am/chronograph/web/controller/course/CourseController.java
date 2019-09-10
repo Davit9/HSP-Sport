@@ -155,14 +155,14 @@ public class CourseController extends BaseController implements Serializable {
 	/**
 	 * @return the courseBean
 	 */
-	public am.chronograph.web.bean.course.CourseBean getCourseBean() {
+	public CourseBean getCourseBean() {
 		return courseBean;
 	}
 
 	/**
 	 * @param courseBean the courseBean to set
 	 */
-	public void setCourseBean(am.chronograph.web.bean.course.CourseBean courseBean) {
+	public void setCourseBean(CourseBean courseBean) {
 		this.courseBean = courseBean;
 	}
 

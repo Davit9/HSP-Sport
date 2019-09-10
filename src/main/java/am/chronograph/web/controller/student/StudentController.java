@@ -10,6 +10,7 @@ import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
 
+import am.chronograph.service.group.GroupService;
 import am.chronograph.service.student.StudentService;
 import am.chronograph.web.bean.student.StudentBean;
 import am.chronograph.web.controller.base.BaseController;
@@ -31,6 +32,10 @@ public class StudentController extends BaseController implements Serializable {
 	@Inject
 	@Spring
 	private transient StudentService studentService;
+	
+	@Inject
+	@Spring
+	private transient GroupService groupService;
 
 	private StudentBean studentBean;
 	
@@ -46,6 +51,7 @@ public class StudentController extends BaseController implements Serializable {
 		super.init();
 
 		studentBean = new StudentBean();
+		studentBean.setGroups(groupService.getAllItems());
 
 		students = studentService.getAll();
 
@@ -92,6 +98,8 @@ public class StudentController extends BaseController implements Serializable {
 	 */
 	public void onEditStudent(StudentBean selectedStudentBean) {
 		studentBean = new StudentBean(selectedStudentBean);
+		
+		studentBean.setGroups(groupService.getAllItems());
 
 		scrollTo("studentForm:studentCreatePanel");
 	}
@@ -158,8 +166,29 @@ public class StudentController extends BaseController implements Serializable {
             
             noError = false;
         }
+		
+		if (studentBean.getSelectedGroupId() == null) {
+			addErrorMessage("groupForm:course", "contractValidationMandatory");
+
+			noError = false;
+		}
 
 		return noError;
+	}
+	
+
+	/**
+	 * @return the groupService
+	 */
+	public GroupService getGroupService() {
+		return groupService;
+	}
+
+	/**
+	 * @param groupService the groupService to set
+	 */
+	public void setGroupService(GroupService groupService) {
+		this.groupService = groupService;
 	}
 
 	/**
@@ -189,4 +218,5 @@ public class StudentController extends BaseController implements Serializable {
 	public void setStudents(List<StudentBean> students) {
 		this.students = students;
 	}
+	
 }

@@ -60,7 +60,11 @@
 				
 				<p:column headerText="Ծննդյան տարեթիվը">
 					<h:outputText value="#{student.dateOfBirth}" />
-				</p:column>			
+				</p:column>		
+				
+				<p:column headerText="#{bundle['group']}">
+					<h:outputText value="#{student.groupName}" />
+				</p:column>	
 				
 				
 				
@@ -134,6 +138,15 @@
                	<p:outputLabel for="dateOfBirth" value="Ծննդյան տարեթիվը *"/>               	
                	<p:calendar id="dateOfBirth" value="#{studentController.studentBean.dateOfBirth}" tabindex="5"/>
                	<p:message for="dateOfBirth" />
+               	
+               	<p:outputLabel for="group" value="#{bundle['group']} *" />
+       			 <p:selectOneMenu id="group" value="#{studentController.studentBean.selectedGroupId}" style="width:125px">
+  
+ 									<f:selectItem itemLabel="-------" />
+									<f:selectItems value="#{studentController.studentBean.groups}"/>
+	
+       			 </p:selectOneMenu>
+				<p:message for="group" />
                	        
      		</p:panelGrid>
          	

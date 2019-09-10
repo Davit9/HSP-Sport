@@ -1,5 +1,8 @@
 package am.chronograph.web.bean.course;
 
+import java.util.Set;
+
+import am.chronograph.domain.group.Group;
 import am.chronograph.web.bean.BaseBean;
 
 /**
@@ -16,6 +19,7 @@ public class CourseBean extends BaseBean {
 
 	private Long id;
 	private String name;	
+	private Set<Group> groups;
 
 	/**
 	 * default constructor
@@ -31,6 +35,7 @@ public class CourseBean extends BaseBean {
 	public CourseBean(CourseBean courseBean) {
 		id = courseBean.getId();
 		name = courseBean.getName();
+		groups = courseBean.getGroup();
 	}
 	
 	
@@ -60,5 +65,19 @@ public class CourseBean extends BaseBean {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	/**
+	 * @return the group
+	 */
+	public Set<Group> getGroup() {
+		return groups;
+	}
+
+	/**
+	 * @param group the group to set
+	 */
+	public void setGroup(Set<Group> group) {
+		this.groups = group;
 	}
 }

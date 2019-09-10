@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import am.chronograph.dao.group.GroupDao;
 import am.chronograph.dao.student.StudentDao;
 import am.chronograph.domain.student.Student;
 import am.chronograph.web.bean.student.StudentBean;
@@ -23,6 +24,9 @@ public class StudentServiceImpl implements StudentService {
 	
 	@Autowired
 	private StudentDao studentDao;
+	
+	@Autowired
+	private GroupDao groupDao;
 
 	/*
 	 * (non-Javadoc)
@@ -84,6 +88,8 @@ public class StudentServiceImpl implements StudentService {
 		student.setMiddleName(studentBean.getMiddleName());
 		student.setEmail(studentBean.getEmail());
 		student.setDateOfBirth(studentBean.getDateOfBirth());
+		
+		student.setGroups((groupDao.getById(studentBean.getSelectedGroupId())));
 
 		return student;
 	}
@@ -118,7 +124,9 @@ public class StudentServiceImpl implements StudentService {
 		studentBean.setMiddleName(student.getMiddleName());
 		studentBean.setEmail(student.getEmail());
 		studentBean.setDateOfBirth(student.getDateOfBirth());
-
+		studentBean.setGroupName(student.getGroups().getName());
+		studentBean.setSelectedGroupId((student.getGroups().getId()));
+		
 		return studentBean;
 	}
 }

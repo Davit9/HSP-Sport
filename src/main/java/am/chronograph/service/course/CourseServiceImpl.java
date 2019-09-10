@@ -2,6 +2,9 @@ package am.chronograph.service.course;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.faces.model.SelectItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,6 +69,18 @@ public class CourseServiceImpl implements CourseService {
 		List<Course> courses = courseDao.getAll();
 
 		return initBeanListByDomainList(courses);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see am.chronograph.service.course.CourseService#getAllItems()
+	 */
+	@Override
+	public List<SelectItem> getAllItems() {
+		List<Course> courses = courseDao.getAll();
+		
+		return courses.stream().map(course -> new SelectItem(course.getId(), course.getName()))
+							   .collect(Collectors.toList()); 
 	}
 	
 	/**

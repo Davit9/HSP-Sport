@@ -4,9 +4,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import am.chronograph.domain.AuditAwareEntity;
+import am.chronograph.domain.group.Group;
 
 /**
  * class which contains information about students
@@ -35,6 +38,10 @@ public class Student extends AuditAwareEntity {
 
 	@Column(name = "date_of_birth")
 	private Date dateOfBirth;
+	
+	@ManyToOne
+	@JoinColumn(name = "group_id", referencedColumnName = "id")
+	private Group groups;
 
 	/**
 	 * @return the firstName
@@ -105,4 +112,19 @@ public class Student extends AuditAwareEntity {
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
+
+	/**
+	 * @return the groups
+	 */
+	public Group getGroups() {
+		return groups;
+	}
+
+	/**
+	 * @param groups the groups to set
+	 */
+	public void setGroups(Group groups) {
+		this.groups = groups;
+	}
+	
 }
