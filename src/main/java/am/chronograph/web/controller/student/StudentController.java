@@ -61,7 +61,7 @@ public class StudentController extends BaseController implements Serializable {
      * ActionListener method called when 'Create' clicked
      */
     public void onCreateStudent() {
-        if(!isValidStudent()) {
+        if(isValidStudent()) {
             return;
         }
         
@@ -79,7 +79,7 @@ public class StudentController extends BaseController implements Serializable {
 	 * 
 	 */
 	public void onUpdateStudent() {
-		if (!isValidStudent()) {
+		if (isValidStudent()) {
 			return;
 		}
 
@@ -135,42 +135,42 @@ public class StudentController extends BaseController implements Serializable {
      * @return
      */
 	private boolean isValidStudent() {
-		boolean noError = true;
+		boolean noError = false;
 
 		if (StringUtils.isBlank(studentBean.getFirstName())) {
 			addErrorMessage("studentForm:firstName", "contractValidationMandatory");
 
-			noError = false;
+			noError = true;
 		}
 
 		if (StringUtils.isBlank(studentBean.getLastName())) {
 			addErrorMessage("studentForm:lastName", "contractValidationMandatory");
 
-			noError = false;
+			noError = true;
 		}
 
 		if (StringUtils.isBlank(studentBean.getMiddleName())) {
 			addErrorMessage("studentForm:middleName", "contractValidationMandatory");
 
-			noError = false;
+			noError = true;
 		}
 		
 		if (StringUtils.isBlank(studentBean.getEmail())) {
 			addErrorMessage("studentForm:email", "contractValidationMandatory");
 
-			noError = false;
+			noError = true;
 		}
 		
 		if(studentBean.getDateOfBirth() == null) {
             addErrorMessage("studentForm:dateOfBirth", "contractValidationMandatory");
             
-            noError = false;
+            noError = true;
         }
 		
 		if (studentBean.getSelectedGroupId() == null) {
-			addErrorMessage("groupForm:course", "contractValidationMandatory");
+			addErrorMessage("studentForm:group", "contractValidationMandatory");
 
-			noError = false;
+			noError = true;
 		}
 
 		return noError;
