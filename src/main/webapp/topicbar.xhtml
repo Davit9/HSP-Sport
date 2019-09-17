@@ -1,13 +1,11 @@
-<ui:composition 
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:sec="http://www.springframework.org/security"
-    xmlns:pm="http://primefaces.org/modena">
-    
-    <f:loadBundle id="bundle" var="bundle" basename="#{sessionBean.currentBundle}"/>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+			    xmlns:f="http://java.sun.com/jsf/core"
+			    xmlns:h="http://java.sun.com/jsf/html"
+			    xmlns:ui="http://java.sun.com/jsf/facelets"
+			    xmlns:p="http://primefaces.org/ui"
+			    xmlns:pm="http://primefaces.org/modena">
+
+  <f:loadBundle id="bundle" var="bundle" basename="#{sessionBean.currentBundle}"/>
     <div class="Animated05" id="layout-menu-cover">
         <h:form id="menuform">
             <pm:menu>                                       
@@ -18,12 +16,9 @@
                  
                 <p:menuitem id="student" value="#{bundle['studentArm']}" icon="fa fa-user" outcome="/student" />
                 
-                <p:menuitem id="topic" value="#{bundle['studentArm']}" icon="fa fa-user" outcome="/topic" />
+                <p:menuitem id="topic" value="#{bundle['studentArm']}" icon="fa fa-user" outcome="/topicbar" />
                 
             </pm:menu>
         </h:form>
     </div>
 </ui:composition>
-
-
-

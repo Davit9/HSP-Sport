@@ -1,8 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui">
+			    xmlns:f="http://java.sun.com/jsf/core"
+			    xmlns:h="http://java.sun.com/jsf/html"
+			    xmlns:ui="http://java.sun.com/jsf/facelets"
+			    xmlns:p="http://primefaces.org/ui">
 
 <h:form id="alertForm">
     
@@ -13,7 +13,7 @@
             <span class="ButtonLine" id="ButtonLine2"></span>
             <span class="ButtonLine" id="ButtonLine3"></span>
         </a>
-        <a href="#{request.contextPath}/dashboard" id="logo">
+        <a href="#{request.contextPath}/courses" id="logo">
             <h:graphicImage name="chrono/images/bonako-light2.png" styleClass="Fleft" />            
         </a>
         
@@ -30,3 +30,14 @@
 </h:form>
     
 </ui:composition>
+
+
+<!-- <p:commandButton actionListener="#{topicController.topicService.getAll()}"
+				        					 process="@this"
+		              						 update="courseForm:courseListPanel, courseForm:courseCreatePanel"
+				                   			 icon="fa fa-list"
+				                       		 styleClass="BlueButton"
+				                       		 onclick="topicbar.xhtml"/>	 -->
+				                       		 
+				                       		 
+				                       		 

@@ -65,7 +65,7 @@ public class CourseController extends BaseController implements Serializable {
         
         courseBean = new CourseBean();
         
-        addInfoMessage("courseSuccessSave");
+        addInfoMessage("dataSuccessSave");
     }
     
     /**
@@ -83,7 +83,7 @@ public class CourseController extends BaseController implements Serializable {
         
         courseBean = new CourseBean();
 
-		addInfoMessage("courseSuccessUpdate");
+		addInfoMessage("dataSuccessUpdate");
 	}
 	
 	/**

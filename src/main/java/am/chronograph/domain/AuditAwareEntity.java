@@ -31,9 +31,6 @@ import am.chronograph.domain.user.User;
 @MappedSuperclass
 public abstract class AuditAwareEntity implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7863032622421570282L;
 
 	/**

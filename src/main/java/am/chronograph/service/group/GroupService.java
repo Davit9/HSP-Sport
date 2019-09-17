@@ -43,7 +43,8 @@ public interface GroupService {
 	List<GroupBean> getAll();
 	
 	/**
-	 * Get the select items list of all courses... 
+	 * Get the select items list of all groups... 
+	 * 
 	 * @return
 	 */
 	List<SelectItem> getAllItems();

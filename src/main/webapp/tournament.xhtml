@@ -95,7 +95,7 @@
 			<p:messages id="infoErrorMessages" showDetail="true" autoUpdate="false" closable="true" globalOnly="true"/>
 			
 			<h2 class="BigTopic">					
-				<h:outputText value="#{tournamentController.tournamentBean.id != null ? bundle['updateTournament'] : bundle['createTournament']}"/>&#160;					                 
+				<h:outputText value="#{tournamentController.tournamentBean.id != null ? bundle['updateArm'] : bundle['createTournament']}"/>&#160;					                 
 			</h2>
 			
 			<div class="EmptyBox20"></div>
@@ -129,7 +129,7 @@
                     			                	
                	<p:commandButton id="updateTournamnet" actionListener="#{tournamentController.onUpdateTournament}" 
           					     update="tournamentForm:tournamentCreatePanel, tournamentForm:tournamentListPanel"
-                    			 value="#{bundle['updateTournament']}" 
+                    			 value="#{bundle['updateArm']}" 
                     			 styleClass="GreenButton"                     				 
                     			 style="width:auto" 
                     			 icon="fa fa-pencil Fs16 White"

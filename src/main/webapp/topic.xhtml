@@ -1,0 +1,150 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:of="http://omnifaces.org/functions"
+                xmlns:sec="http://www.springframework.org/security"
+                xmlns:pe="http://primefaces.org/ui/extensions"
+                template="/WEB-INF/template.xhtml">
+  
+<ui:define name="subheader">
+	<h:outputLink value="#{request.contextPath}/topic" styleClass="BoldGray">
+		<h:outputText value="topic"/> 
+	</h:outputLink>    
+</ui:define>
+
+<ui:define name="content">
+	
+	<f:loadBundle id="bundle" var="bundle" basename="#{courseController.currentBundle}"/>
+	
+	<h:form id="topicForm">
+	
+		<sec:ifAnyGranted roles="ROLE_ADMIN">
+			<p:defaultCommand target="createTopic" />
+		</sec:ifAnyGranted>
+		
+		<h:panelGroup id="topicListPanel" layout="block" styleClass="Container100 ui-fluid">
+			<div class="ContainerIndent">
+				<div class="Card ShadowEffect">
+				
+					<h2 class="BigTopic">					
+						<h:outputText value="#{bundle['topic']}"/>
+					</h2>
+					
+					<p:dataTable value="#{topicController.topics}" var="topic">		
+						
+						<p:column headerText="#{bundle['serialNumber']}" >
+							<h:outputText value="#{topic.id}" />
+						</p:column>
+						
+						<p:column headerText="#{bundle['topicName']}">
+							<h:outputText value="#{topic.topicName}" />
+						</p:column>	
+						
+						<p:column headerText="#{bundle['classes']}">
+							<h:outputText value="#{topic.duration}" />
+						</p:column>	
+						
+						<p:column headerText="#{bundle['courseArm']}">
+							<h:outputText value="#{topic.courseName}" />
+						</p:column>
+						
+						<sec:ifAnyGranted roles="ROLE_ADMIN">
+							<p:column style="text-align: center; white-space: nowrap;" exportable="false">
+								<f:facet name="header">
+					                <h:outputText value="#{bundle['actionsArm']}"/>
+					            </f:facet>
+					            
+					            <p:commandButton actionListener="#{topicController.onEditTopic(topic)}"
+					           					 update="topicForm:topicCreatePanel"
+					       						 process="@this"		                   			 		                       		 
+						                   		 title="Փոփոխել տվյալները"		        
+						                   		 icon="fa fa-pencil Fs16 White"
+						                   		 style="width:auto"			                       		 
+						                   		 styleClass="GreenButton"/>
+				                   		 
+				                <p:commandButton actionListener="#{topicController.onRemoveTopic(topic)}"
+					        					 process="@this"
+			              						 update="topicForm:topicListPanel, topicForm:topicCreatePanel"
+					                   			 icon="fa fa-trash-o"
+					                       		 title="Ջնջել դասընթացը"
+					                       		 styleClass="RedButton"
+					                       		 onclick="if (!confirm('Դուք վստա՞հ եք, որ ուզում եք ջնջել ընտրված թեման։')) return false;"/>		        	
+	       			
+				                   		 
+							</p:column>
+						</sec:ifAnyGranted>
+					</p:dataTable>
+				</div>
+			</div>	
+		</h:panelGroup>
+		
+		<h:panelGroup id="topicCreatePanel" layout="block" styleClass="Container100 ui-fluid">
+			<div class="ContainerIndent">
+				<div class="Card ShadowEffect">	
+					
+					<p:messages id="infoErrorMessages" showDetail="true" autoUpdate="false" closable="true" globalOnly="true"/>
+					
+					<h2 class="BigTopic">					
+						<h:outputText value="#{bundle['topicDetails']}"/>&#160;					                 
+					</h2>
+					<div class="EmptyBox20"></div>
+					
+					<p:panelGrid id="topicPanel" columns="3" columnClasses="ui-grid-col-2,ui-grid-col-5,i-grid-col-5" layout="grid" styleClass="ui-panelgrid-blank" style="border:0px none; background-color:transparent;" >
+             			
+             			<p:outputLabel for="name" value="#{bundle['title']} *"/>
+		               		<p:inputText id="name" value="#{topicController.topicBean.topicName}" maxlength="50" tabindex="1"/>
+		               	<p:message for="name" /> 
+		               	
+		               	<p:outputLabel for="duration" value="#{bundle['classes']} *" style="white-space: nowrap;"/>
+		                <p:spinner id="duration" value="#{topicController.topicBean.duration}" min="1" maxlength="3" tabindex="16"/>
+		                <p:message for="duration" />
+		                
+		                <p:outputLabel for="topic" value="#{bundle['courseArm']} *" />
+			       			 <p:selectOneMenu id="topic" value="#{topicController.topicBean.selectedCourseId}" style="width:125px">
+			  
+				 				<f:selectItem itemLabel="-------" />
+								<f:selectItems value="#{topicController.topicBean.courses}"/>
+			       			 </p:selectOneMenu>
+			       			 
+			       		<p:message for="topic" />	               	
+             		</p:panelGrid>
+             		
+             		<sec:ifAnyGranted roles="ROLE_ADMIN">
+             			<div class="EmptyBox20"></div>
+             			
+             			<h:panelGroup id="buttonsPanel" layout="block">
+             				<p:commandButton id="createTopic" actionListener="#{topicController.onCreateTopic}" 
+          					     update="topicForm:topicCreatePanel, topicForm:topicListPanel"
+                    			 value="#{topicController.topicBean.id != null ? 'Թարմացնել' : 'Ավելացնել'}" 
+                    			 styleClass="#{topicController.topicBean.id != null ? 'GreenButton' : ''}"                     				 
+                    			 style="width:auto" icon="#{topicController.topicBean.id != null ? 'fa fa-pencil' : 'fa fa-plus'} Fs16 White"
+                    			 rendered="#{topicController.topicBean.id == null}"/>
+             			</h:panelGroup>
+             			
+             			<p:commandButton id="updateTopic" actionListener="#{topicController.onUpdateTopic}" 
+          					     update="topicForm:topicCreatePanel, topicForm:topicListPanel"
+                    			 value="#{bundle['updateArm']}" 
+                    			 styleClass="GreenButton"                     				 
+                    			 style="width:auto" 
+                    			 icon="fa fa-pencil Fs16 White"
+                    			 rendered="#{topicController.topicBean.id != null}"/>
+                    			 
+                    	<p:commandButton actionListener="#{topicController.onCancel}" 
+              				     update="topicCreatePanel"
+              					 process="@this"
+                				 value="#{bundle['denied']}" 
+                				 styleClass="RedButton"                     				 
+                				 style="width:auto" icon="fa fa-ban Fs16 White"
+                				 rendered="#{topicController.topicBean.id != null}"/>
+             			
+             		</sec:ifAnyGranted>
+				</div>
+			</div>
+		</h:panelGroup>
+		
+		
+	</h:form>
+</ui:define>
+</ui:composition>

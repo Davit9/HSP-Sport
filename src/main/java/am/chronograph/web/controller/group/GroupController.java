@@ -71,7 +71,7 @@ public class GroupController extends BaseController implements Serializable {
         
         groupBean = new GroupBean();
         
-        addInfoMessage("groupSuccessSave");
+        addInfoMessage("dataSuccessSave");
     }
     
     /**
@@ -89,7 +89,7 @@ public class GroupController extends BaseController implements Serializable {
         
         groupBean = new GroupBean();
 
-		addInfoMessage("groupSuccessUpdate");
+		addInfoMessage("dataSuccessUpdate");
 	}
 	
 	/**
@@ -130,7 +130,7 @@ public class GroupController extends BaseController implements Serializable {
 	}
 
     /**
-     * Method for Person validation -- for inserting/updating corresponding data
+     * Method for Group validation -- for inserting/updating corresponding data
 	 * into database...
 	 * 
      * @return
